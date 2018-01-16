@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.Scripting;
 using System;
 
-namespace CSBREPL.Engine
+namespace quicsharp.Engine
 {
 	public class Variable
 	{

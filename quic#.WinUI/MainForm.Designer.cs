@@ -1,4 +1,4 @@
-﻿namespace CSBREPL.WinUI
+﻿namespace quicsharp.WinUI
 {
 	partial class MainForm
 	{
@@ -86,7 +86,7 @@
 			this.Controls.Add(this.splitContainer1);
 			this.KeyPreview = true;
 			this.Name = "MainForm";
-			this.Text = "CSBREPL";
+			this.Text = "quic#";
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

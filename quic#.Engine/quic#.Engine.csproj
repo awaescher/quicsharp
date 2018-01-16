@@ -7,8 +7,8 @@
     <ProjectGuid>{7CCA535E-8E20-4FDF-9F44-F4F2671D2B03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSBREPL.Engine</RootNamespace>
-    <AssemblyName>CSBREPL.Engine</AssemblyName>
+    <RootNamespace>quicsharp.Engine</RootNamespace>
+    <AssemblyName>quic#.Engine</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

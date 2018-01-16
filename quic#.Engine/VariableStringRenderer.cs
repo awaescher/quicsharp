@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSBREPL.Engine
+namespace quicsharp.Engine
 {
 	public class VariableStringRenderer
 	{

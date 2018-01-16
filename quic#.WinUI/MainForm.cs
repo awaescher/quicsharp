@@ -1,4 +1,4 @@
-﻿using CSBREPL.Engine;
+﻿using quicsharp.Engine;
 using EasyScintilla.Stylers;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSBREPL.WinUI
+namespace quicsharp.WinUI
 {
 	public partial class MainForm : Form
 	{

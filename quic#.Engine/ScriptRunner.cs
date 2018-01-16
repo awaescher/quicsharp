@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSBREPL.Engine
+namespace quicsharp.Engine
 {
 	public class ScriptRunner
 	{

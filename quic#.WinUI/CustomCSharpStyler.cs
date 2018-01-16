@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSBREPL.WinUI
+namespace quicsharp.WinUI
 {
 	public class CustomCSharpStyler : ScintillaStyler
 	{

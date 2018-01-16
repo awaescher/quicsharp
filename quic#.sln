@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSBREPL.WinUI", "CSBREPL.WinUI\CSBREPL.WinUI.csproj", "{BED3212E-EFA4-4F9D-BFCB-F92F7DB305C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quic#.WinUI", "quic#.WinUI\quic#.WinUI.csproj", "{BED3212E-EFA4-4F9D-BFCB-F92F7DB305C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSBREPL.Engine", "CSBREPL.Engine\CSBREPL.Engine.csproj", "{7CCA535E-8E20-4FDF-9F44-F4F2671D2B03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quic#.Engine", "quic#.Engine\quic#.Engine.csproj", "{7CCA535E-8E20-4FDF-9F44-F4F2671D2B03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSBREPL.WinUI
+namespace quicsharp.WinUI
 {
 	static class Program
 	{
