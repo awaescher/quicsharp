@@ -79,9 +79,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSBREPL.Scripting\CSBREPL.Scripting.csproj">
-      <Project>{68037dfb-8629-49e6-af7b-f4db5534c23f}</Project>
-      <Name>CSBREPL.Scripting</Name>
+    <ProjectReference Include="..\CSBREPL.Engine\CSBREPL.Engine.csproj">
+      <Project>{7cca535e-8e20-4fdf-9f44-f4f2671d2b03}</Project>
+      <Name>CSBREPL.Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

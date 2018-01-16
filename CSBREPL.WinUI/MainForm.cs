@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSBREPL.Engine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,8 +24,12 @@ namespace CSBREPL.WinUI
 
 			if (e.KeyCode == Keys.F5)
 			{
-				var o = await Scripting.ScriptRunner.Run(txtCode.Text);
-				txtOut.Text = o.ToString();
+				object o = await new ScriptRunner().Run(txtCode.Text);
+
+				if (o is Exception ex)
+					txtOut.Text = ex.ToString();
+				else
+					txtOut.Text = new VariableStringRenderer().Render(o as IEnumerable<Variable>);
 			}
 		}
 		
