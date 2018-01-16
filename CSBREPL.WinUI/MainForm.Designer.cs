@@ -41,6 +41,7 @@
 			// txtCode
 			// 
 			this.txtCode.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.txtCode.IndentationGuides = ScintillaNET.IndentView.LookBoth;
 			this.txtCode.Location = new System.Drawing.Point(0, 0);
 			this.txtCode.Name = "txtCode";
 			this.txtCode.Size = new System.Drawing.Size(946, 360);
@@ -51,6 +52,7 @@
 			// txtOut
 			// 
 			this.txtOut.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.txtOut.IndentationGuides = ScintillaNET.IndentView.LookBoth;
 			this.txtOut.Location = new System.Drawing.Point(0, 0);
 			this.txtOut.Name = "txtOut";
 			this.txtOut.Size = new System.Drawing.Size(946, 231);

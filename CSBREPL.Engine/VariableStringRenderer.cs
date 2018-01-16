@@ -8,14 +8,19 @@ namespace CSBREPL.Engine
 	{
 		public string Render(IEnumerable<Variable> variables)
 		{
-			return string.Join(Environment.NewLine, variables.Select(v => Render(v)));
+			return string.Join(Environment.NewLine, variables.Where(v => ShouldRender(v)).Select(v => Render(v)));
+		}
+
+		public bool ShouldRender(Variable variable)
+		{
+			if (variable == null)
+				return false;
+
+			return variable.Name.Length > 0 && variable.Name[0] != '_';
 		}
 
 		public string Render(Variable variable)
 		{
-			if (variable == null)
-				return "(null)";
-
 			return $"{variable.Name}: {variable.Value ?? "(null)"}";
 		}
 	}

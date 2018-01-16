@@ -118,12 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="txtCode.Text" xml:space="preserve">
-    <value>var user = System.Environment.UserName;
+    <value>// fill variables to see their values in the output window
+// prefix variables with '_' to hide them in the output window
+var user = System.Environment.UserName;
 var line = $"Started {DateTime.Now} by {user}";
-var drives = DriveInfo
+var _drives = DriveInfo
     .GetDrives()
     .Where(d =&gt; d.DriveType == DriveType.Fixed)
     .ToArray();
-var dr = string.Join(", ", (object[])drives);</value>
+var drives = string.Join(", ", (object[])_drives);</value>
   </data>
 </root>
