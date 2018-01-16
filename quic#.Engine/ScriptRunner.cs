@@ -9,11 +9,27 @@ namespace quicsharp.Engine
 {
 	public class ScriptRunner
 	{
+		public ScriptRunner(CodePreparer preparer)
+		{
+			Preparer = preparer ?? throw new ArgumentNullException(nameof(preparer));
+		}
+
 		public async Task<object> Run(string code)
 		{
+			var options = DefaultScriptOptions;
+
+			var preparationResult = Preparer.Prepare(code);
+			code = preparationResult.Code;
+
+			if (preparationResult.Imports.Any())
+				options = options.AddImports(preparationResult.Imports);
+
+			if (preparationResult.References.Any())
+				options = options.AddReferences(preparationResult.References);
+
 			try
 			{
-				var result = await CSharpScript.RunAsync<object>(code, DefaultScriptOptions);
+				var result = await CSharpScript.RunAsync<object>(code, options);
 				return result.Variables.Select(v => new Variable(v)).ToArray();
 			}
 			catch (Exception ex)
@@ -51,5 +67,7 @@ namespace quicsharp.Engine
 			"System.Threading.Tasks.Parallel",
 			"System.Threading.Thread"
 		};
+
+		public CodePreparer Preparer { get; }
 	}
 }

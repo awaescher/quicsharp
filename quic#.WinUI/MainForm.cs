@@ -38,7 +38,7 @@ namespace quicsharp.WinUI
 
 		private Task<object> RunScriptAsync()
 		{
-			return new ScriptRunner().Run(txtCode.Text);
+			return new ScriptRunner(new CodePreparer()).Run(txtCode.Text);
 		}
 
 		private void ShowScriptOutput(object scriptResult)
