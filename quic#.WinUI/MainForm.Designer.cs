@@ -58,6 +58,7 @@
 			this.txtOut.Size = new System.Drawing.Size(946, 231);
 			this.txtOut.Styler = null;
 			this.txtOut.TabIndex = 0;
+			this.txtOut.Text = "F5 to view the script results";
 			// 
 			// splitContainer1
 			// 

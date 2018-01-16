@@ -27,15 +27,26 @@ namespace quicsharp.WinUI
 			base.OnKeyDown(e);
 
 			if (e.KeyCode == Keys.F5)
-			{
-				object o = await new ScriptRunner().Run(txtCode.Text);
-
-				if (o is Exception ex)
-					txtOut.Text = ex.ToString();
-				else
-					txtOut.Text = new VariableStringRenderer().Render(o as IEnumerable<Variable>);
-			}
+				await RunScriptAndShowOutputAsync();
 		}
-		
+
+		private async Task RunScriptAndShowOutputAsync()
+		{
+			var result = await RunScriptAsync();
+			ShowScriptOutput(result);
+		}
+
+		private Task<object> RunScriptAsync()
+		{
+			return new ScriptRunner().Run(txtCode.Text);
+		}
+
+		private void ShowScriptOutput(object scriptResult)
+		{
+			if (scriptResult is Exception ex)
+				txtOut.Text = ex.ToString();
+			else
+				txtOut.Text = new VariableStringRenderer().Render(scriptResult as IEnumerable<Variable>);
+		}
 	}
 }
