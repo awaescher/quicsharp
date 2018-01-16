@@ -28,8 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.txtCode = new System.Windows.Forms.TextBox();
-			this.txtOut = new System.Windows.Forms.TextBox();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			this.txtCode = new EasyScintilla.SimpleEditor();
+			this.txtOut = new EasyScintilla.SimpleEditor();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -40,23 +41,20 @@
 			// txtCode
 			// 
 			this.txtCode.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.txtCode.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtCode.Location = new System.Drawing.Point(0, 0);
-			this.txtCode.Multiline = true;
 			this.txtCode.Name = "txtCode";
 			this.txtCode.Size = new System.Drawing.Size(946, 360);
+			this.txtCode.Styler = null;
 			this.txtCode.TabIndex = 0;
-			this.txtCode.Text = "var user = System.Environment.UserName;\r\nConsole.WriteLine($\"Started {DateTime.No" +
-    "w} by {user}\");";
+			this.txtCode.Text = resources.GetString("txtCode.Text");
 			// 
 			// txtOut
 			// 
 			this.txtOut.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.txtOut.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtOut.Location = new System.Drawing.Point(0, 0);
-			this.txtOut.Multiline = true;
 			this.txtOut.Name = "txtOut";
 			this.txtOut.Size = new System.Drawing.Size(946, 231);
+			this.txtOut.Styler = null;
 			this.txtOut.TabIndex = 0;
 			// 
 			// splitContainer1
@@ -88,9 +86,7 @@
 			this.Name = "MainForm";
 			this.Text = "CSBREPL";
 			this.splitContainer1.Panel1.ResumeLayout(false);
-			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
-			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -99,8 +95,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox txtCode;
-		private System.Windows.Forms.TextBox txtOut;
+		private EasyScintilla.SimpleEditor txtCode;
+		private EasyScintilla.SimpleEditor txtOut;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 	}
 }

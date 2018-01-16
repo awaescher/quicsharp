@@ -1,4 +1,5 @@
 ﻿using CSBREPL.Engine;
+using EasyScintilla.Stylers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,9 @@ namespace CSBREPL.WinUI
 		public MainForm()
 		{
 			InitializeComponent();
+
+			txtCode.Styler = new CustomCSharpStyler();
+			txtOut.Styler = new BatchStyler();
 		}
 
 		protected async override void OnKeyDown(KeyEventArgs e)
