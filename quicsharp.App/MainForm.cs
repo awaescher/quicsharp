@@ -28,6 +28,7 @@ namespace quicsharp.App
 
 			if (e.KeyCode == Keys.F5)
 				await RunScriptAndShowOutputAsync();
+
 		}
 
 		private async Task RunScriptAndShowOutputAsync()
@@ -46,7 +47,7 @@ namespace quicsharp.App
 			if (scriptResult is Exception ex)
 				txtOut.Text = ex.ToString();
 			else
-				txtOut.Text = new VariableStringRenderer().Render(scriptResult as IEnumerable<Variable>);
+				txtOut.Text = new HumanizerStringRenderer().Render(scriptResult as IEnumerable<Variable>);
 		}
 	}
 }

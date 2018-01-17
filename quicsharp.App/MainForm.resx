@@ -127,11 +127,11 @@
 // prefix variables with '_' to hide them in the output window
 var user = System.Environment.UserName;
 var line = $"Started {DateTime.Now} by {user}";
-var _drives = DriveInfo
+var drives = DriveInfo
     .GetDrives()
     .Where(d =&gt; d.DriveType == DriveType.Fixed)
     .ToArray();
-var drives = string.Join(", ", (object[])_drives);
+var drivesString = string.Join(", ", (object[])drives);
 
 // it's possible to invoke MessageBoxes and other UI elements by referencing and importing System.Windows.Forms
 if (false)
@@ -139,6 +139,7 @@ if (false)
 
 // dynamic support
 dynamic _f = Activator.CreateInstance(typeof(Form));
-var squarePixelsOfUnknownForm = (_f.Size.Height * _f.Size.Width) + " pixels";</value>
+var squarePixelsOfDynamicForm = (_f.Size.Height * _f.Size.Width) + " pixels";
+</value>
   </data>
 </root>

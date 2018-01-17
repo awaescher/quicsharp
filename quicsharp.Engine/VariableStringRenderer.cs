@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,10 +9,14 @@ namespace quicsharp.Engine
 	{
 		public string Render(IEnumerable<Variable> variables)
 		{
-			return string.Join(Environment.NewLine, variables.Where(v => ShouldRender(v)).Select(v => Render(v)));
+			return string.Join(Environment.NewLine, 
+				variables
+					.Where(v => ShouldRender(v))
+					.Select(v => Render(v))
+				);
 		}
 
-		public bool ShouldRender(Variable variable)
+		public virtual bool ShouldRender(Variable variable)
 		{
 			if (variable == null)
 				return false;
@@ -19,7 +24,7 @@ namespace quicsharp.Engine
 			return variable.Name.Length > 0 && variable.Name[0] != '_';
 		}
 
-		public string Render(Variable variable)
+		public virtual string Render(Variable variable)
 		{
 			return $"{variable.Name}: {variable.Value ?? "(null)"}";
 		}

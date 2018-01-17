@@ -1,8 +1,10 @@
 ﻿using Microsoft.CodeAnalysis.Scripting;
 using System;
+using System.Diagnostics;
 
 namespace quicsharp.Engine
 {
+	[DebuggerDisplay("{Name}: {Value}")]
 	public class Variable
 	{
 		public Variable(ScriptVariable scriptVariable)
