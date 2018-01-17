@@ -44,7 +44,7 @@
 			this.txtCode.IndentationGuides = ScintillaNET.IndentView.LookBoth;
 			this.txtCode.Location = new System.Drawing.Point(0, 0);
 			this.txtCode.Name = "txtCode";
-			this.txtCode.Size = new System.Drawing.Size(946, 360);
+			this.txtCode.Size = new System.Drawing.Size(1432, 618);
 			this.txtCode.Styler = null;
 			this.txtCode.TabIndex = 0;
 			this.txtCode.Text = resources.GetString("txtCode.Text");
@@ -55,7 +55,7 @@
 			this.txtOut.IndentationGuides = ScintillaNET.IndentView.LookBoth;
 			this.txtOut.Location = new System.Drawing.Point(0, 0);
 			this.txtOut.Name = "txtOut";
-			this.txtOut.Size = new System.Drawing.Size(946, 231);
+			this.txtOut.Size = new System.Drawing.Size(1432, 422);
 			this.txtOut.Styler = null;
 			this.txtOut.TabIndex = 0;
 			this.txtOut.Text = "F5 to view the script results";
@@ -75,18 +75,19 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.txtOut);
-			this.splitContainer1.Size = new System.Drawing.Size(946, 595);
-			this.splitContainer1.SplitterDistance = 360;
+			this.splitContainer1.Size = new System.Drawing.Size(1432, 1044);
+			this.splitContainer1.SplitterDistance = 618;
 			this.splitContainer1.TabIndex = 1;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(946, 595);
+			this.ClientSize = new System.Drawing.Size(1432, 1044);
 			this.Controls.Add(this.splitContainer1);
 			this.KeyPreview = true;
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "quic#";
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);

@@ -119,20 +119,22 @@
   </resheader>
   <data name="txtCode.Text" xml:space="preserve">
     <value>// #r adds references, #i adds imports (using directives)
-// System.Windows.Forms is already known, just shown here for demo purposes
-#r System.Windows.Forms
-#i System.Windows.Forms
+/*
+    #r System.Windows.Forms                     // reference known assemblies
+    #r C:\Program Files\RepoZ\RepoZ.Api.dll     // reference dll files
+    #i System.Data.SqlClient                    // import a namespace
+*/
 
 // fill variables to see their values in the output window
 // prefix variables with '_' to hide them in the output window
-var user = System.Environment.UserName;
-var line = $"Started {DateTime.Now} by {user}";
+var _user = System.Environment.UserName;
+var _date = DateTime.Now;
+var line = $"Started {_date} by {_user}";
 var drives = DriveInfo
     .GetDrives()
     .Where(d =&gt; d.DriveType == DriveType.Fixed)
     .ToArray();
-var drivesString = string.Join(", ", (object[])drives);
-
+    
 // it's possible to invoke MessageBoxes and other UI elements by referencing and importing System.Windows.Forms
 if (false)
     MessageBox.Show(line, "Scripted MessageBox", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -140,6 +142,17 @@ if (false)
 // dynamic support
 dynamic _f = Activator.CreateInstance(typeof(Form));
 var squarePixelsOfDynamicForm = (_f.Size.Height * _f.Size.Width) + " pixels";
-</value>
+
+// use methods and properties from the current scipt (see below)
+var methodValue = SomeMethod(_user);
+var propertyValue = SomeProperty;
+
+private string SomeMethod(string user) =&gt; $"Called by user {user}.";
+private string SomeProperty =&gt; "Value of readonly property";
+
+// inspect any object with the extension method "Inspect()"
+// (dynamic types have to be casted to an object first)
+var inspection1 = _user.Inspect();
+var inspection2 = ((object)_f).Inspect();</value>
   </data>
 </root>

@@ -47,7 +47,7 @@ namespace quicsharp.App
 			if (scriptResult is Exception ex)
 				txtOut.Text = ex.ToString();
 			else
-				txtOut.Text = new HumanizerStringRenderer().Render(scriptResult as IEnumerable<Variable>);
+				txtOut.Text = new VariableStringRenderer().Render(scriptResult as IEnumerable<Variable>);
 		}
 	}
 }

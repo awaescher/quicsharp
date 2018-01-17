@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace quicsharp.Engine
@@ -44,6 +45,7 @@ namespace quicsharp.Engine
 			.WithEmitDebugInformation(true);
 
 		internal IEnumerable<string> DefaultScriptReferens => new string[] {
+			Assembly.GetExecutingAssembly().Location,
 			"System.Data.Linq",		// Linq support
 			"Microsoft.CSharp",		// dynamic-keyword,
 			"System.Windows.Forms"
@@ -69,7 +71,13 @@ namespace quicsharp.Engine
 			"System.Threading.Tasks.Parallel",
 			"System.Threading.Thread",
 			"System.Windows.Forms"
-		};
+		}.Union(GetOwnNamespaces());
+
+		private IEnumerable<string> GetOwnNamespaces()
+		{
+			var types = Assembly.GetExecutingAssembly().DefinedTypes;
+			return types.Select(t => t.Namespace).Distinct();
+		}
 
 		public CodePreparer Preparer { get; }
 	}
