@@ -4,13 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BED3212E-EFA4-4F9D-BFCB-F92F7DB305C9}</ProjectGuid>
+    <ProjectGuid>{CB1EF219-E94B-4A70-B305-4BA5A9706C33}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>quicsharp.WinUI</RootNamespace>
-    <AssemblyName>quic#.WinUI</AssemblyName>
+    <RootNamespace>quicsharp.App</RootNamespace>
+    <AssemblyName>quic#</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,12 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EasyScintilla, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EasyScintilla.1.0.3\lib\net40\EasyScintilla.dll</HintPath>
-    </Reference>
-    <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,7 +69,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,14 +80,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <PackageReference Include="EasyScintilla">
+      <Version>1.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\quic#.Engine\quic#.Engine.csproj">
-      <Project>{7cca535e-8e20-4fdf-9f44-f4f2671d2b03}</Project>
-      <Name>quic#.Engine</Name>
+    <ProjectReference Include="..\quicsharp.Engine\quicsharp.Engine.csproj">
+      <Project>{837869e0-7a68-4357-94c8-8ae4068f2616}</Project>
+      <Name>quicsharp.Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

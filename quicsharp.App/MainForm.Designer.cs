@@ -1,4 +1,4 @@
-﻿namespace quicsharp.WinUI
+﻿namespace quicsharp.App
 {
 	partial class MainForm
 	{

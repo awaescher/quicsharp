@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("quic#.WinUI")]
+[assembly: AssemblyTitle("quicsharp.App")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("quic#.WinUI")]
+[assembly: AssemblyProduct("quicsharp.App")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bed3212e-efa4-4f9d-bfcb-f92f7db305c9")]
+[assembly: Guid("cb1ef219-e94b-4a70-b305-4ba5a9706c33")]
 
 // Version information for an assembly consists of the following four values:
 //
