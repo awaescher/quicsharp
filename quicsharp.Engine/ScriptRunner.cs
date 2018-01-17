@@ -44,7 +44,9 @@ namespace quicsharp.Engine
 			.WithEmitDebugInformation(true);
 
 		internal IEnumerable<string> DefaultScriptReferens => new string[] {
-			"System.Data.Linq"
+			"System.Data.Linq",		// Linq support
+			"Microsoft.CSharp",		// dynamic-keyword,
+			"System.Windows.Forms"
 		};
 
 		internal IEnumerable<string> DefaultScriptImports => new string[] {
@@ -65,7 +67,8 @@ namespace quicsharp.Engine
 			"System.Threading",
 			"System.Threading.Tasks",
 			"System.Threading.Tasks.Parallel",
-			"System.Threading.Thread"
+			"System.Threading.Thread",
+			"System.Windows.Forms"
 		};
 
 		public CodePreparer Preparer { get; }

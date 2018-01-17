@@ -118,7 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="txtCode.Text" xml:space="preserve">
-    <value>#r System.Windows.Forms
+    <value>// #r adds references, #i adds imports (using directives)
+// System.Windows.Forms is already known, just shown here for demo purposes
+#r System.Windows.Forms
 #i System.Windows.Forms
 
 // fill variables to see their values in the output window
@@ -132,6 +134,11 @@ var _drives = DriveInfo
 var drives = string.Join(", ", (object[])_drives);
 
 // it's possible to invoke MessageBoxes and other UI elements by referencing and importing System.Windows.Forms
-//MessageBox.Show(line, "Scripted MessageBox", MessageBoxButtons.OK, MessageBoxIcon.Information);</value>
+if (false)
+    MessageBox.Show(line, "Scripted MessageBox", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+// dynamic support
+dynamic _f = Activator.CreateInstance(typeof(Form));
+var squarePixelsOfUnknownForm = (_f.Size.Height * _f.Size.Width) + " pixels";</value>
   </data>
 </root>
