@@ -14,12 +14,15 @@ namespace quicsharp.App
 {
 	public partial class MainForm : Form
 	{
+		private VariableStringRenderer _renderer;
+
 		public MainForm()
 		{
 			InitializeComponent();
 
 			txtCode.Styler = new CustomCSharpStyler();
 			txtOut.Styler = new BatchStyler();
+			_renderer = new VariableStringRenderer();
 		}
 
 		protected async override void OnKeyDown(KeyEventArgs e)
@@ -47,7 +50,7 @@ namespace quicsharp.App
 			if (scriptResult is Exception ex)
 				txtOut.Text = ex.ToString();
 			else
-				txtOut.Text = new VariableStringRenderer().Render(scriptResult as IEnumerable<Variable>);
+				txtOut.Text = _renderer.Render(scriptResult as IEnumerable<Variable>);
 		}
 	}
 }

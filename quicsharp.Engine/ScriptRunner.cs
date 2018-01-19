@@ -70,14 +70,9 @@ namespace quicsharp.Engine
 			"System.Threading.Tasks",
 			"System.Threading.Tasks.Parallel",
 			"System.Threading.Thread",
-			"System.Windows.Forms"
-		}.Union(GetOwnNamespaces());
-
-		private IEnumerable<string> GetOwnNamespaces()
-		{
-			var types = Assembly.GetExecutingAssembly().DefinedTypes;
-			return types.Select(t => t.Namespace).Distinct();
-		}
+			"System.Windows.Forms",
+			this.GetType().Namespace
+		};
 
 		public CodePreparer Preparer { get; }
 	}

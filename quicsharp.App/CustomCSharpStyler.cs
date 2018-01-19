@@ -12,8 +12,9 @@ namespace quicsharp.App
 	public class CustomCSharpStyler : ScintillaStyler
 	{
 		public CustomCSharpStyler()
-			   : base(Lexer.Cpp, lineNumbers: true, codeFolding: true, braceMatching: true, autoIndent: true)
-		{ }
+			: base(Lexer.Cpp, lineNumbers: true, codeFolding: true, braceMatching: true, autoIndent: true)
+		{
+		}
 
 		public override void ApplyStyle(ScintillaNET.Scintilla scintilla)
 		{
@@ -33,15 +34,8 @@ namespace quicsharp.App
 			scintilla.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
 		}
 
-		public static Color IntToColor(int rgb)
-		{
-			return Color.FromArgb(255, (byte)(rgb >> 16), (byte)(rgb >> 8), (byte)rgb);
-		}
-
-
 		public override void RemoveStyle(ScintillaNET.Scintilla scintilla)
 		{
-
 		}
 
 		public override void SetKeywords(ScintillaNET.Scintilla scintilla)
