@@ -82,14 +82,20 @@ namespace quicsharp.Engine
 
 				var builder = new ScriptServicesBuilder(console, logProvider);
 
-				builder.ScriptEngine<ScriptCs.Engine.Roslyn.CSharpScriptInMemoryEngine>(); // CSharpScriptEngine
+				builder.ScriptEngine<ScriptCs.Engine.Roslyn.CSharpReplEngine>(); // CSharpScriptEngine
 				var services = builder.Build();
 
 				executor = (ScriptExecutor)services.Executor;
 				executor.Initialize(Enumerable.Empty<string>(), Enumerable.Empty<IScriptPack>());
 
+
 				await Task.Run(() =>
 				{
+					var replEngine = executor.ScriptEngine as ScriptCs.Engine.Roslyn.CSharpReplEngine;
+					IScriptPack pack = new ScriptPack();
+					var session = new ScriptPackSession(new IScriptPack[] { pack }, new string[0]);
+					var vars = replEngine.GetLocalVariables(session);
+
 					result = executor.ExecuteScript(code);
 				});
 			}
