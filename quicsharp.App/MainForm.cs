@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EasyScintilla;
 
 namespace quicsharp.App
 {
@@ -42,15 +43,38 @@ namespace quicsharp.App
 
 		private Task<object> RunScriptAsync()
 		{
-			return new ScriptRunner(new CodePreparer()).Run(txtCode.Text);
+			return new ScriptCsScriptRunner(new CodePreparer(), new UiConsole(txtOut)).Run(txtCode.Text);
 		}
 
 		private void ShowScriptOutput(object scriptResult)
 		{
 			if (scriptResult is Exception ex)
 				txtOut.Text = ex.ToString();
-			else
-				txtOut.Text = _renderer.Render(scriptResult as IEnumerable<Variable>);
+			//else
+			//	txtOut.Text = _renderer.Render(scriptResult as IEnumerable<Variable>);
 		}
+
+		public class UiConsole : ISmallConsole
+		{
+			public UiConsole(SimpleEditor editor)
+			{
+				Editor = editor ?? throw new ArgumentNullException(nameof(editor));
+			}
+
+			public SimpleEditor Editor { get; }
+
+			public void Clear()
+			{
+				Action act = () => Editor.ClearAll();
+				Editor.Invoke(act);
+			}
+
+			public void WriteLine(string message)
+			{
+				Action act = () => Editor.AppendText(message);
+				Editor.Invoke(act);
+			}
+		}
+
 	}
 }

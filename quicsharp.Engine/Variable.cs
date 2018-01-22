@@ -9,7 +9,7 @@ namespace quicsharp.Engine
 	{
 		public Variable(ScriptVariable scriptVariable)
 		{
-			IsReadOnly = scriptVariable.IsReadOnly;
+			IsReadOnly = false; // scriptVariable.IsReadOnly;
 			Name = scriptVariable.Name;
 			Type = scriptVariable.Type;
 			Value = scriptVariable.Value;
