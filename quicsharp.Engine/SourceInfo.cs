@@ -17,5 +17,9 @@ namespace quicksharp.Engine
 		public List<string> Usings { get; set; }
 
 		public List<string> References { get; set; }
+
+		public int LineNumberOffsetFromTemplate { get; set; }
+
+		internal int CalculateVisibleLineNumber(int compilerLineError) => compilerLineError - LineNumberOffsetFromTemplate;
 	}
 }

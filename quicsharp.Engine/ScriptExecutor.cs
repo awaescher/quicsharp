@@ -29,7 +29,7 @@ namespace quicsharp.Engine
 			var compilerResult = CSharpScriptCompiler.Compile(sourceInfo);
 
 			if (compilerResult.Errors.HasErrors)
-				ShowErrors(compilerResult);
+				ShowErrors(compilerResult, sourceInfo);
 			else
 				TryExecuteScript(compilerResult);
 		}
@@ -46,13 +46,13 @@ namespace quicsharp.Engine
 			}
 		}
 
-		private void ShowErrors(CompilerResults compilerResult)
+		private void ShowErrors(CompilerResults compilerResult, SourceInfo sourceInfo)
 		{
 			var compilerErrors = compilerResult.Errors.OfType<CompilerError>()
 				.Select(compilerError => new ScriptError()
 				{
 					ErrorNumber = compilerError.ErrorNumber,
-					Line = compilerError.Line,
+					Line = sourceInfo.CalculateVisibleLineNumber(compilerError.Line),
 					Message = compilerError.ErrorText
 				})
 				.ToArray();

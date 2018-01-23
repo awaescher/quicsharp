@@ -62,7 +62,10 @@ namespace quicksharp.Engine
 					continue;
 
 				if (string.IsNullOrEmpty(line.Trim()))
+				{
+					sb.AppendLine("");
 					continue;
+				}
 
 				string expressionString = line.TrimStart();
 				string valueString = expressionString;
@@ -190,6 +193,21 @@ namespace quicksharp.Engine
 			if (sourceInfo.Usings.Any())
 				usingString = string.Join(Environment.NewLine, sourceInfo.Usings.ToArray());
 
+			int lineNumberOffsetFromTemplate = -1;
+			var templateLines = SOURCE.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+			for (int i = 0; i < templateLines.Length; i++)
+			{
+				if (templateLines[i] == "%LINES%")
+				{
+					lineNumberOffsetFromTemplate = i;
+					break;
+				}
+			}
+
+			if (lineNumberOffsetFromTemplate == -1)
+				throw new InvalidOperationException("Code template is not valid.");
+
+			sourceInfo.LineNumberOffsetFromTemplate = lineNumberOffsetFromTemplate;
 			sourceInfo.SourceCode = SOURCE.Replace("%LINES%", sourceInfo.SourceCode).Replace("%USINGS%", usingString);
 		}
 
