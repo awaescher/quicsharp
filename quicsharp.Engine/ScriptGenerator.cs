@@ -61,37 +61,30 @@ namespace quicksharp.Engine
 				if (line == null)
 					continue;
 
-				if (string.IsNullOrEmpty(line.Trim()))
+				string expressionString = line.TrimStart();
+
+				bool isEmpty = string.IsNullOrEmpty(line.Trim());
+				bool isComment = expressionString.StartsWith("//");
+
+				bool shouldSkip = isEmpty || isComment;
+
+				if (shouldSkip)
 				{
 					sb.AppendLine("");
 					continue;
 				}
 
-				string expressionString = line.TrimStart();
 				string valueString = expressionString;
 
-				var useLogger = true;
+				var sendLineToLogger = true;
 
-				// skip "//......"
-				if (expressionString.StartsWith("//"))
-					continue;
-
-				if (expressionString.Length > 1 && expressionString.StartsWith("!"))
-				{
-					// "!......"
-					string codeString = expressionString.Substring(1);
-					//if (!codeString.TrimEnd().EndsWith(";", StringComparison.OrdinalIgnoreCase))
-					//	codeString += ";";
-					sb.AppendLine(indent + codeString);
-				}
-				else if (expressionString.Length > 1 && expressionString.StartsWith("#"))
+				if (expressionString.Length > 1 && expressionString.StartsWith("#"))
 				{
 					// insert namespace "#System.Windows.Forms"
 					string usingString = expressionString.Substring(1).Trim();
 					if (!usingString.StartsWith("using", StringComparison.OrdinalIgnoreCase))
 						usingString = "using " + usingString;
-					//if (!usingString.EndsWith(";", StringComparison.OrdinalIgnoreCase))
-					//	usingString += ";";
+
 					if (!info.Usings.Contains(usingString))
 						info.Usings.Add(usingString);
 				}
@@ -104,9 +97,10 @@ namespace quicksharp.Engine
 				}
 				else
 				{
-					// "....::....."
 					if (line.Contains("::"))
 					{
+						// "....::....." --> named variable
+
 						string[] parts = line.Split(new string[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
 
 						if (parts.Length == 2)
@@ -117,7 +111,7 @@ namespace quicksharp.Engine
 					}
 					else if (expressionString.Length > 1 && expressionString.StartsWith("?"))
 					{
-						// "?..."
+						// "?..." --> Print
 						valueString = expressionString.Substring(1).Trim();
 						var end = valueString.LastIndexOf(';');
 						if (end > 0)
@@ -126,14 +120,11 @@ namespace quicksharp.Engine
 					}
 					else if (expressionString.Length > 1 && expressionString.StartsWith("*"))
 					{
-						// "*..."
+						// "*..." --> Inspect
 
 						string viewString = expressionString.Substring(1).Trim();
 
 						expressionString = "Inspect: " + viewString;
-
-						//if (!viewString.EndsWith(";", StringComparison.OrdinalIgnoreCase))
-						//	viewString += ";";
 
 						var end = viewString.LastIndexOf(';');
 						if (end > 0)
@@ -142,40 +133,28 @@ namespace quicksharp.Engine
 
 						valueString = viewString;
 					}
-					else if (expressionString.Length > 1 && expressionString.StartsWith("'"))
-					{
-						// "'....." comment
-						expressionString = "";
-						valueString = "\"" + "// " + line.Substring(1).TrimStart() + "\"";
-					}
 					else
 					{
-						// "......"
-						//if (!expressionString.TrimEnd().EndsWith(";", StringComparison.OrdinalIgnoreCase))
-						//	expressionString += ";";
+						// this is any "normal" code, nothing to log but process normally. Like loops and ifs, etc.
 
 						sb.AppendLine(indent + expressionString);
-						useLogger = false;
+						sendLineToLogger = false;
 					}
 
-					if (useLogger)
+					if (sendLineToLogger)
 					{
 						expressionString = expressionString.Replace("\"", "\\" + "\"");
-
 						sb.AppendLine(string.Format(indent + "logger.TryLog(\"{0}\", {1});", expressionString, valueString));
-
 					}
 				}
 
 			}
 
 			info.SourceCode = sb.ToString();
-
 			ResolveSource(ref info);
 
 			return info;
 		}
-
 
 		internal static void ResolveSource(ref SourceInfo sourceInfo)
 		{
