@@ -162,17 +162,7 @@ namespace quicksharp.Engine
 					{
 						expressionString = expressionString.Replace("\"", "\\" + "\"");
 
-						if (expressionString.Contains(".!"))
-						{
-							var resolvedLines = RuntimeHelper.Resolve2(expressionString);
-							for (int i = 0; i < resolvedLines.Count - 1; i++)
-								sb.AppendLine(indent + resolvedLines[i]);
-							sb.AppendLine(string.Format(indent + "logger.TryLog(\"{0}\", {1});", expressionString, resolvedLines.Last()));
-						}
-						else
-						{
-							sb.AppendLine(string.Format(indent + "logger.TryLog(\"{0}\", {1});", expressionString, valueString));
-						}
+						sb.AppendLine(string.Format(indent + "logger.TryLog(\"{0}\", {1});", expressionString, valueString));
 
 					}
 				}

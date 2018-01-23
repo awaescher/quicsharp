@@ -62,7 +62,7 @@ namespace quicsharp.Engine
 
 		private void ExecuteCode(Assembly assembly)
 		{
-			var scriptType = assembly.GetType("quicksharp.Engine.DynamicScripte");
+			var scriptType = assembly.GetType("quicksharp.Engine.DynamicScript");
 
 			if (scriptType == null)
 				throw new ArgumentNullException(nameof(scriptType), "Could not find generated script type: quicksharp.Engine.DynamicScript");
