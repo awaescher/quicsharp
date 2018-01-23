@@ -19,7 +19,20 @@ namespace quicksharp.Engine.Errors
 
 		public object Data { get; set; }
 
-		public override string ToString() => $"{ErrorNumber} @{Line}: {Message}";
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+
+			if (!string.IsNullOrEmpty(ErrorNumber))
+				sb.Append($"#{ErrorNumber}: ");
+
+			if (Line > 0)
+				sb.Append($"@{Line}: ");
+
+			sb.Append(Message);
+
+			return sb.ToString();
+		}
 
 		internal static ScriptError From(Exception ex)
 		{

@@ -22,6 +22,7 @@ namespace quicksharp.Engine
 			parameters.ReferencedAssemblies.Add("System.Linq.dll");
 			parameters.ReferencedAssemblies.Add("Microsoft.CSharp.dll");
 			parameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
+			parameters.ReferencedAssemblies.Add("System.Reflection.dll");
 			parameters.ReferencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
 
 			foreach (var reference in sourceInfo.References)
