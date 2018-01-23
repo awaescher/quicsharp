@@ -8,9 +8,9 @@ using System.Text.RegularExpressions;
 
 namespace quicksharp.Engine
 {
-	public static class RuntimeHelper
+	internal static class RuntimeHelper
 	{
-		public static string[] Inspect(object o)
+		internal static string[] Inspect(object o)
         {
             Type t = o.GetType();
             if (t != null)
@@ -85,7 +85,7 @@ namespace quicksharp.Engine
 			return "(null)";
 		}
 
-		public static object Resolve(object startObj, string accessor)
+		internal static object Resolve(object startObj, string accessor)
 		{
 			string[] accessors = accessor.Split('.');
 
@@ -121,7 +121,7 @@ namespace quicksharp.Engine
 			return nextObj;
 		}
 
-		public static List<string> Resolve2(string line)
+		internal static List<string> Resolve2(string line)
 		{
 
 			/* TODO
@@ -313,7 +313,7 @@ namespace quicksharp.Engine
 			return value;
 		}
 
-		public static MethodInfo[] GetMethods(Type t)
+		internal static MethodInfo[] GetMethods(Type t)
 		{
 			List<MethodInfo> result = new List<MethodInfo>();
 
@@ -326,7 +326,7 @@ namespace quicksharp.Engine
 			return result.ToArray();
 		}
 
-		public static string[] GetMethodParameters(MethodInfo method)
+		internal static string[] GetMethodParameters(MethodInfo method)
 		{
 			// methods[i].GetParameters().OrderBy(p => p.Position).Select(p => p.ParameterType.Name + "" "" + p.Name))
 			List<ParameterInfo> parameters = method.GetParameters().OrderBy(p => p.Position).ToList();
@@ -343,7 +343,7 @@ namespace quicksharp.Engine
 			return result;
 		}
 
-		public static bool GetIsPropertyGetterOrSetter(string methodName)
+		internal static bool GetIsPropertyGetterOrSetter(string methodName)
         {
 			return methodName.StartsWith("set_") ||
 				methodName.StartsWith("get_") ||

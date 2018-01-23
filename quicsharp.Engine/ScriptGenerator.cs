@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace quicksharp.Engine
 {
-	public static class ScriptGenerator
+	internal static class ScriptGenerator
 	{
 		private const string SOURCE = @"
 using System;
@@ -48,7 +48,7 @@ namespace quicksharp.Engine
 }
 ";
 
-		public static SourceInfo GetSource(string[] lines)
+		internal static SourceInfo GetSource(string[] lines)
 		{
 			var info = new SourceInfo();
 
@@ -184,7 +184,7 @@ namespace quicksharp.Engine
 		}
 
 
-		public static void ResolveSource(ref SourceInfo sourceInfo)
+		internal static void ResolveSource(ref SourceInfo sourceInfo)
 		{
 			string usingString = "";
 			if (sourceInfo.Usings.Any())

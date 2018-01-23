@@ -7,9 +7,9 @@ using System.Text;
 
 namespace quicksharp.Engine
 {
-	public static class CSharpScriptCompiler
+	internal static class CSharpScriptCompiler
 	{
-		public static CompilerResults Compile(SourceInfo sourceInfo)
+		internal static CompilerResults Compile(SourceInfo sourceInfo)
 		{
 			var codeProvider = new CSharpCodeProvider();
 			var parameters = new CompilerParameters();

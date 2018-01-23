@@ -29,16 +29,13 @@ namespace quicsharp.Engine
 			var compilerResult = CSharpScriptCompiler.Compile(sourceInfo);
 
 			if (compilerResult.Errors.HasErrors)
-			{
-				var compilerErrors = compilerResult.Errors.OfType<CompilerError>()
-					.Select(compilerError => new ScriptError() { ErrorNumber = compilerError.ErrorNumber, Line = compilerError.Line, Message = compilerError.ErrorText })
-					.ToArray();
+				ShowErrors(compilerResult);
+			else
+				TryExecuteScript(compilerResult);
+		}
 
-				Logger.ShowErrors(compilerErrors);
-
-				return;
-			}
-
+		private void TryExecuteScript(CompilerResults compilerResult)
+		{
 			try
 			{
 				ExecuteCode(compilerResult.CompiledAssembly);
@@ -49,17 +46,31 @@ namespace quicsharp.Engine
 			}
 		}
 
+		private void ShowErrors(CompilerResults compilerResult)
+		{
+			var compilerErrors = compilerResult.Errors.OfType<CompilerError>()
+				.Select(compilerError => new ScriptError()
+				{
+					ErrorNumber = compilerError.ErrorNumber,
+					Line = compilerError.Line,
+					Message = compilerError.ErrorText
+				})
+				.ToArray();
+
+			Logger.ShowErrors(compilerErrors);
+		}
+
 		private void ExecuteCode(Assembly assembly)
 		{
-			var scriptLoggerType = GetScript(assembly.GetTypes());
-			if (scriptLoggerType != null)
+			var scriptType = GetScriptType(assembly.GetTypes());
+			if (scriptType != null)
 			{
-				var script = Activator.CreateInstance(scriptLoggerType) as IScript;
+				var script = Activator.CreateInstance(scriptType) as IScript;
 				script.Execute(Logger);
 			}
 		}
 
-		private Type GetScript(Type[] assemblyTypes)
+		private Type GetScriptType(Type[] assemblyTypes)
 		{
 			var script = typeof(IScript);
 
