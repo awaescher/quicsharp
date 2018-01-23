@@ -43,11 +43,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharpScriptCompiler.cs" />
     <Compile Include="Errors\ScriptError.cs" />
-    <Compile Include="Errors\ScriptErrorExtender.cs" />
     <Compile Include="Interfaces\IScriptLogger.cs" />
-    <Compile Include="Interfaces\IScriptLoggerHost.cs" />
-    <Compile Include="Loggers\BaseScriptLogger.cs" />
+    <Compile Include="Interfaces\IScript.cs" />
+    <Compile Include="Loggers\ScriptLogger.cs" />
     <Compile Include="RuntimeHelper.cs" />
+    <Compile Include="ScriptExecutor.cs" />
     <Compile Include="ScriptGenerator.cs" />
     <Compile Include="SourceInfo.cs" />
   </ItemGroup>

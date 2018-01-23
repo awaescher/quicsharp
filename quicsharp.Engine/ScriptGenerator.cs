@@ -23,14 +23,10 @@ using quicksharp.Engine.Loggers;
 
 namespace quicksharp.Engine
 {
-    public class DynamicScriptLogger : IScriptLoggerHost
+    public class DynamicScript : IScript
     {
-        public DynamicScriptLogger()
-            : base()
-        {
-        }
 
-        public void Execute(IScriptLogger logger)
+	public void Execute(IScriptLogger logger)
         {
             try
             {

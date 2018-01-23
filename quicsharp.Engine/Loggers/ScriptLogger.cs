@@ -7,20 +7,20 @@ using System.Text;
 
 namespace quicksharp.Engine.Loggers
 {
-	public abstract class BaseScriptLogger : IScriptLogger
+	public abstract class ScriptLogger : IScriptLogger
 	{
 		private bool _hasLogs = false;
 
-		public BaseScriptLogger()
+		public ScriptLogger()
 		{
 		}
 
-		public void InitLog()
+		public virtual void InitLog()
 		{
 			_hasLogs = false;
 		}
 
-		public void EndLog()
+		public virtual void EndLog()
 		{
 			if (!_hasLogs)
 				TryLog(null, "(no logs.)");

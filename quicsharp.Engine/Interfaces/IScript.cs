@@ -4,7 +4,7 @@ using System.Text;
 
 namespace quicksharp.Engine.Interfaces
 {
-	public interface IScriptLoggerHost
+	public interface IScript
 	{
 		void Execute(IScriptLogger logger);
 	}

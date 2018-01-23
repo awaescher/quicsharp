@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace quicksharp.Engine.Loggers
 {
-	public class TextBoxScriptLogger : BaseScriptLogger
+	public class TextBoxScriptLogger : ScriptLogger
 	{
 		private ScintillaNET.Scintilla _box = null;
 
@@ -16,7 +16,14 @@ namespace quicksharp.Engine.Loggers
 			_box = box;
 
 			if (box != null)
-				box.Clear();
+				box.ResetText();
+		}
+
+		public override void InitLog()
+		{
+			base.InitLog();
+
+			_box.ResetText();
 		}
 
 		public override void Log(string expression, object value)
@@ -66,7 +73,7 @@ namespace quicksharp.Engine.Loggers
 			if (_box == null)
 				throw new NullReferenceException("_box is not set!");
 
-			_box.Clear();
+			_box.ResetText();
 			_box.Text = string.Join(Environment.NewLine, errors);
 		}
 	}

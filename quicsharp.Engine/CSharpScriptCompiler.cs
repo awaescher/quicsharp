@@ -11,28 +11,26 @@ namespace quicksharp.Engine
 	{
 		public static CompilerResults Compile(SourceInfo sourceInfo)
 		{
-			var c = new CSharpCodeProvider();
-			var p = new CompilerParameters();
+			var codeProvider = new CSharpCodeProvider();
+			var parameters = new CompilerParameters();
 
-			//var rf = Assembly.GetAssembly(typeof(IScriptLogger));
-			var rf = Assembly.GetExecutingAssembly();
-
-			p.ReferencedAssemblies.Add("System.dll");
-			p.ReferencedAssemblies.Add("System.Core.dll");
-			p.ReferencedAssemblies.Add("System.IO.dll");
-			p.ReferencedAssemblies.Add("System.Drawing.dll");
-			p.ReferencedAssemblies.Add("System.Xml.dll");
-			p.ReferencedAssemblies.Add("System.Linq.dll");
-			p.ReferencedAssemblies.Add("Microsoft.CSharp.dll");
-			p.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-			p.ReferencedAssemblies.Add(rf.Location);
+			parameters.ReferencedAssemblies.Add("System.dll");
+			parameters.ReferencedAssemblies.Add("System.Core.dll");
+			parameters.ReferencedAssemblies.Add("System.IO.dll");
+			parameters.ReferencedAssemblies.Add("System.Drawing.dll");
+			parameters.ReferencedAssemblies.Add("System.Xml.dll");
+			parameters.ReferencedAssemblies.Add("System.Linq.dll");
+			parameters.ReferencedAssemblies.Add("Microsoft.CSharp.dll");
+			parameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
+			parameters.ReferencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
 
 			foreach (var reference in sourceInfo.References)
-				p.ReferencedAssemblies.Add(reference);
+				parameters.ReferencedAssemblies.Add(reference);
 
-			p.GenerateExecutable = false;
-			p.GenerateInMemory = true;
-			return c.CompileAssemblyFromSource(p, sourceInfo.SourceCode);
+			parameters.GenerateExecutable = false;
+			parameters.GenerateInMemory = true;
+
+			return codeProvider.CompileAssemblyFromSource(parameters, sourceInfo.SourceCode);
 		}
 	}
 }
