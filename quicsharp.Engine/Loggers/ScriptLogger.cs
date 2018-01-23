@@ -42,16 +42,11 @@ namespace quicksharp.Engine.Loggers
 
 		public abstract void Log(string expression, object value);
 
-		public virtual void ShowErrors(params ScriptError[] errors)
-		{
-			ShowErrors(errors.Select(e => e.Message).ToArray());
-		}
+		public abstract void ShowErrors(params ScriptError[] errors);
 
-		public virtual void ShowErrors(params Exception[] errors)
+		public virtual void ShowErrors(params Exception[] exceptions)
 		{
-			ShowErrors(errors.Select(e => e.Message).ToArray());
+			ShowErrors(exceptions.Select(ex => ScriptError.From(ex)).ToArray());
 		}
-
-		public abstract void ShowErrors(params string[] errors);
 	}
 }

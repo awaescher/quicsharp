@@ -15,6 +15,6 @@ namespace quicksharp.Engine.Interfaces
 
 		void ShowErrors(params ScriptError[] errors);
 
-		void ShowErrors(params Exception[] errors);
+		void ShowErrors(params Exception[] exceptions);
 	}
 }

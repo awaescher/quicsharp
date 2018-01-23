@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -15,5 +16,31 @@ namespace quicksharp.Engine.Errors
 		public string ErrorNumber { get; set; }
 
 		public int Line { get; set; }
+
+		public object Data { get; set; }
+
+		public override string ToString() => $"{ErrorNumber} @{Line}: {Message}";
+
+		internal static ScriptError From(Exception ex)
+		{
+			return new ScriptError()
+			{
+				ErrorNumber = "",
+				Line = 0,
+				Message = ex.Message,
+				Data = ex
+			};
+		}
+
+		internal static ScriptError From(CompilerError error)
+		{
+			return new ScriptError()
+			{
+				ErrorNumber = error.ErrorNumber,
+				Line = error.Line,
+				Message = error.ErrorText,
+				Data = error
+			};
+		}
 	}
 }

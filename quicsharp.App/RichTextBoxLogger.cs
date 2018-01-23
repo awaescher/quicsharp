@@ -1,4 +1,5 @@
-﻿using System;
+﻿using quicksharp.Engine.Errors;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,13 +69,13 @@ namespace quicksharp.Engine.Loggers
 			_box.AppendText(log + Environment.NewLine + Environment.NewLine);
 		}
 
-		public override void ShowErrors(params string[] errors)
+		public override void ShowErrors(params ScriptError[] errors)
 		{
 			if (_box == null)
 				throw new NullReferenceException("_box is not set!");
 
 			_box.ResetText();
-			_box.Text = string.Join(Environment.NewLine, errors);
+			_box.Text = string.Join(Environment.NewLine, errors.Select(e => e.ToString()));
 		}
 	}
 
