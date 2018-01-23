@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LineStrategies\LoggerLineInfo.cs" />
+    <Compile Include="LineStrategies\PrintLineStrategy.cs" />
+    <Compile Include="LineStrategies\InspectLineStrategy.cs" />
+    <Compile Include="LineStrategies\LineStrategy.cs" />
+    <Compile Include="LineStrategies\EmptyLineStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharpScriptCompiler.cs" />
     <Compile Include="Errors\ScriptError.cs" />

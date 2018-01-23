@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using quicsharp.Engine.LineStrategies;
 
 namespace quicksharp.Engine
 {
 	internal static class ScriptGenerator
 	{
+		private static LineStrategy[] _lineStrategies = new LineStrategy[] {
+				new EmptyLineStrategy(),
+				new PrintLineStrategy(),
+				new InspectLineStrategy()
+			};
+
 		private const string SOURCE = @"
 using System;
 using System.IO;
@@ -58,8 +65,33 @@ namespace quicksharp.Engine
 
 			foreach (var line in lines)
 			{
-				if (line == null)
-					continue;
+				var strategy = _lineStrategies.FirstOrDefault(s => s.IsResponsible(line));
+
+				LoggerLineInfo loggerInfo = null;
+
+				if (strategy != null)
+				{
+					if (strategy.ShouldSkip(line))
+					{
+						sb.AppendLine("");
+						continue;
+					}
+
+					loggerInfo = strategy.GetLoggerInfoIfApplicable(line);
+				}
+
+				if (loggerInfo == null)
+				{
+					// this is any "normal" code, nothing to log but process normally. Like loops and ifs, etc.
+					sb.AppendLine(indent + line.TrimStart());
+				}
+				else
+				{
+					var displayNameWithQuotationMarks = loggerInfo.DisplayName.Replace("\"", "\\" + "\"");
+					sb.AppendLine(indent + $"logger.TryLog(\"{displayNameWithQuotationMarks}\", {loggerInfo.Value});");
+				}
+
+				/*
 
 				string expressionString = line.TrimStart();
 
@@ -109,30 +141,30 @@ namespace quicksharp.Engine
 							valueString = parts[1].TrimStart();
 						}
 					}
-					else if (expressionString.Length > 1 && expressionString.StartsWith("?"))
-					{
-						// "?..." --> Print
-						valueString = expressionString.Substring(1).Trim();
-						var end = valueString.LastIndexOf(';');
-						if (end > 0)
-							valueString = valueString.Substring(0, end).TrimEnd();
-						expressionString = valueString;
-					}
-					else if (expressionString.Length > 1 && expressionString.StartsWith("*"))
-					{
-						// "*..." --> Inspect
+										else if (expressionString.Length > 1 && expressionString.StartsWith("?"))
+										{
+											// "?..." --> Print
+											valueString = expressionString.Substring(1).Trim();
+											var end = valueString.LastIndexOf(';');
+											if (end > 0)
+												valueString = valueString.Substring(0, end).TrimEnd();
+											expressionString = valueString;
+										}
+										else if (expressionString.Length > 1 && expressionString.StartsWith("*"))
+										{
+											// "*..." --> Inspect
 
-						string viewString = expressionString.Substring(1).Trim();
+											string viewString = expressionString.Substring(1).Trim();
 
-						expressionString = "Inspect: " + viewString;
+											expressionString = "Inspect: " + viewString;
 
-						var end = viewString.LastIndexOf(';');
-						if (end > 0)
-							viewString = viewString.Substring(0, end).TrimEnd();
-						viewString = "RuntimeHelper.Inspect(" + viewString + ")";
+											var end = viewString.LastIndexOf(';');
+											if (end > 0)
+												viewString = viewString.Substring(0, end).TrimEnd();
+											viewString = "RuntimeHelper.Inspect(" + viewString + ")";
 
-						valueString = viewString;
-					}
+											valueString = viewString;
+										}
 					else
 					{
 						// this is any "normal" code, nothing to log but process normally. Like loops and ifs, etc.
@@ -146,7 +178,9 @@ namespace quicksharp.Engine
 						expressionString = expressionString.Replace("\"", "\\" + "\"");
 						sb.AppendLine(string.Format(indent + "logger.TryLog(\"{0}\", {1});", expressionString, valueString));
 					}
+
 				}
+					*/
 
 			}
 
