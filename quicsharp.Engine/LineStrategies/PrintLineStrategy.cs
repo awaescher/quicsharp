@@ -25,25 +25,7 @@ namespace quicsharp.Engine.LineStrategies
 			if (end > 0)
 				nameAndValue = nameAndValue.Substring(0, end).TrimEnd();
 
-			var name = nameAndValue;
-			var value = nameAndValue;
-
-
-
-			// ?Alias>"My Value"
-			// -> print as if "My Value" was the value of the variable "Alias" instead of the expression itself
-			var match = Regex.Match(line, "[?].*>");
-			if (match.Success && match.Value?.Length > 2)
-			{
-				name = match.Value.Substring(1, match.Value.Length - 2);
-				value = Regex.Replace(line, "[?].*>", "");
-
-				end = value.LastIndexOf(';');
-				if (end > 0)
-					value = value.Substring(0, end).TrimEnd();
-			}
-
-			return new LoggerLineInfo(name, value);
+			return new LoggerLineInfo(nameAndValue, nameAndValue);
 		}
 	}
 }
