@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using quicksharp.Engine;
 
 namespace quicsharp.Engine.LineStrategies
 {
@@ -11,6 +12,10 @@ namespace quicsharp.Engine.LineStrategies
 
 		internal abstract bool ShouldSkip(string line);
 
-		internal abstract LoggerLineInfo GetLoggerInfoIfApplicable(string line);
+		internal virtual LoggerLineInfo GetLoggerInfoIfApplicable(string line) => null;
+
+		internal virtual void ExtendSourceIfApplicable(SourceInfo sourceInfo, string line)
+		{
+		}
 	}
 }

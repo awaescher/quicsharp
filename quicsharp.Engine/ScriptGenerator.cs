@@ -14,6 +14,8 @@ namespace quicksharp.Engine
 			};
 
 		private static LineStrategy[] _lineStrategies = new LineStrategy[] {
+				new ReferenceLineStrategy(),
+				new UsingLineStrategy(),
 				new EmptyLineStrategy(),
 				new PrintLineStrategy()
 			};
@@ -61,7 +63,7 @@ namespace quicksharp.Engine
 
 		internal static SourceInfo GetSource(string[] lines)
 		{
-			var info = new SourceInfo();
+			var sourceInfo = new SourceInfo();
 
 			string indent = "\t\t";
 
@@ -78,6 +80,8 @@ namespace quicksharp.Engine
 
 				if (strategy != null)
 				{
+					strategy.ExtendSourceIfApplicable(sourceInfo, line);
+
 					if (strategy.ShouldSkip(line))
 					{
 						sb.AppendLine("");
@@ -134,67 +138,14 @@ namespace quicksharp.Engine
 					if (!info.References.Contains(reference))
 						info.References.Add(reference);
 				}
-				else
-				{
-					if (line.Contains("::"))
-					{
-						// "....::....." --> named variable
-
-						string[] parts = line.Split(new string[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
-
-						if (parts.Length == 2)
-						{
-							expressionString = parts[0].Trim();
-							valueString = parts[1].TrimStart();
-						}
-					}
-										else if (expressionString.Length > 1 && expressionString.StartsWith("?"))
-										{
-											// "?..." --> Print
-											valueString = expressionString.Substring(1).Trim();
-											var end = valueString.LastIndexOf(';');
-											if (end > 0)
-												valueString = valueString.Substring(0, end).TrimEnd();
-											expressionString = valueString;
-										}
-										else if (expressionString.Length > 1 && expressionString.StartsWith("*"))
-										{
-											// "*..." --> Inspect
-
-											string viewString = expressionString.Substring(1).Trim();
-
-											expressionString = "Inspect: " + viewString;
-
-											var end = viewString.LastIndexOf(';');
-											if (end > 0)
-												viewString = viewString.Substring(0, end).TrimEnd();
-											viewString = "RuntimeHelper.Inspect(" + viewString + ")";
-
-											valueString = viewString;
-										}
-					else
-					{
-						// this is any "normal" code, nothing to log but process normally. Like loops and ifs, etc.
-
-						sb.AppendLine(indent + expressionString);
-						sendLineToLogger = false;
-					}
-
-					if (sendLineToLogger)
-					{
-						expressionString = expressionString.Replace("\"", "\\" + "\"");
-						sb.AppendLine(string.Format(indent + "logger.TryLog(\"{0}\", {1});", expressionString, valueString));
-					}
-
-				}
 					*/
 
 			}
 
-			info.SourceCode = sb.ToString();
-			ResolveSource(ref info);
+			sourceInfo.SourceCode = sb.ToString();
+			ResolveSource(ref sourceInfo);
 
-			return info;
+			return sourceInfo;
 		}
 
 		internal static void ResolveSource(ref SourceInfo sourceInfo)

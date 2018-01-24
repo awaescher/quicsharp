@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeHelper.cs" />
+    <Compile Include="LineStrategies\UsingLineStrategy.cs" />
+    <Compile Include="LineStrategies\ReferenceLineStrategy.cs" />
     <Compile Include="Preprocessors\CommentRemover.cs" />
     <Compile Include="Preprocessors\IPreprocessor.cs" />
     <Compile Include="LineStrategies\LoggerLineInfo.cs" />

@@ -9,6 +9,7 @@
 		}
 
 		internal string DisplayName { get;  }
+
 		internal string Value { get; }
 	}
 }

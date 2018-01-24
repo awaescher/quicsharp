@@ -10,7 +10,7 @@ namespace quicsharp.Engine.LineStrategies
 	{
 		internal override bool IsResponsible(string line)
 		{
-			return line.Trim().StartsWith("?");
+			return line.TrimStart().StartsWith("?");
 		}
 
 		internal override bool ShouldSkip(string line) => false;
@@ -19,11 +19,7 @@ namespace quicsharp.Engine.LineStrategies
 		{
 			var cleanedLine = line.TrimStart().Substring(1);
 
-			var nameAndValue = cleanedLine.Trim();
-
-			var end = nameAndValue.LastIndexOf(';');
-			if (end > 0)
-				nameAndValue = nameAndValue.Substring(0, end).TrimEnd();
+			var nameAndValue = cleanedLine.Trim().RemoveSemicolon();
 
 			return new LoggerLineInfo(nameAndValue, nameAndValue);
 		}

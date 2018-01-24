@@ -1,11 +1,12 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using quicsharp.Engine;
 using quicsharp.Engine.LinePreprocessors;
 using System;
 
 namespace quicsharp.Tests
 {
-	public class CommentBlockRemoverTests
+	public class CommentRemoverTests
 	{
 		public class ProcessMethod
 		{

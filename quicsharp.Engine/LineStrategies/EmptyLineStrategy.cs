@@ -13,7 +13,5 @@ namespace quicsharp.Engine.LineStrategies
 		}
 
 		internal override bool ShouldSkip(string line) => true;
-
-		internal override LoggerLineInfo GetLoggerInfoIfApplicable(string line) => null;
 	}
 }

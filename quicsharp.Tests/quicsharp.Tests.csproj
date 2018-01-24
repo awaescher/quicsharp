@@ -66,8 +66,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeHelper.cs" />
-    <Compile Include="CommentBlockRemoverTests.cs" />
+    <Compile Include="CodeHelperTests.cs" />
+    <Compile Include="CommentRemoverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
