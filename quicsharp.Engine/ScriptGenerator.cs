@@ -15,7 +15,6 @@ namespace quicksharp.Engine
 
 		private static LineStrategy[] _lineStrategies = new LineStrategy[] {
 				new EmptyLineStrategy(),
-				new InspectLineStrategy(),
 				new PrintLineStrategy()
 			};
 

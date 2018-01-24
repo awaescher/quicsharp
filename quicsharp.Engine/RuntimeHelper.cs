@@ -10,7 +10,7 @@ namespace quicksharp.Engine
 {
 	public static class RuntimeHelper
 	{
-		public static string[] Inspect(object target)
+		public static string[] Inspect(this object target)
         {
 			var allMembers = new List<string>();
 
