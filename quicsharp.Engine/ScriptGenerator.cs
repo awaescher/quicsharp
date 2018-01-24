@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using quicsharp.Engine.LineStrategies;
+using quicsharp.Engine.LinePreprocessors;
 
 namespace quicksharp.Engine
 {
 	internal static class ScriptGenerator
 	{
+		private static IPreprocessor[] _preprocessors = new IPreprocessor[] {
+				new CommentRemover()
+			};
+
 		private static LineStrategy[] _lineStrategies = new LineStrategy[] {
 				new EmptyLineStrategy(),
-				new PrintLineStrategy(),
-				new InspectLineStrategy()
+				new InspectLineStrategy(),
+				new PrintLineStrategy()
 			};
 
 		private const string SOURCE = @"
@@ -62,6 +67,9 @@ namespace quicksharp.Engine
 			string indent = "\t\t";
 
 			var sb = new StringBuilder();
+
+			foreach (var preprocessor in _preprocessors)
+				preprocessor.Process(ref lines);
 
 			foreach (var line in lines)
 			{

@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Preprocessors\CommentRemover.cs" />
+    <Compile Include="Preprocessors\IPreprocessor.cs" />
     <Compile Include="LineStrategies\LoggerLineInfo.cs" />
     <Compile Include="LineStrategies\PrintLineStrategy.cs" />
     <Compile Include="LineStrategies\InspectLineStrategy.cs" />

@@ -9,7 +9,7 @@ namespace quicsharp.Engine.LineStrategies
 	{
 		internal override bool IsResponsible(string line)
 		{
-			return line.Trim().StartsWith("//");
+			return line == null || string.IsNullOrEmpty(line.Trim());
 		}
 
 		internal override bool ShouldSkip(string line) => true;
