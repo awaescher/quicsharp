@@ -15,9 +15,6 @@ namespace quicksharp.Engine.Loggers
 		public TextBoxScriptLogger(ScintillaNET.Scintilla box)
 		{
 			_box = box;
-
-			if (box != null)
-				box.ResetText();
 		}
 
 		public override void InitLog()
