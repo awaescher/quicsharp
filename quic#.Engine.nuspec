@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>quicsharp.Engine</id>
+        <version>1.0.0</version>
+        <title>quic# - C# Scripting Engine</title>
+        <authors>Andreas Wäscher</authors>
+        <owners>Andreas Wäscher</owners>
+        <projectUrl>https://github.com/awaescher/quicsharp</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A simple C# scripting engine without dependencies (beyond .NET 3.5).</description>
+        <tags>quic# C# Scripting</tags>
+    </metadata>
+    <files>
+        <file src="quicsharp.Engine\bin\Release\quicsharp.Engine.dll" target="lib\net35\quicsharp.Engine.dll" />
+    </files>
+</package>
