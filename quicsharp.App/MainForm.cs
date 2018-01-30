@@ -1,5 +1,4 @@
-﻿using quicsharp.Engine;
-using EasyScintilla.Stylers;
+﻿using EasyScintilla.Stylers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using quicksharp.Engine;
+using quicksharp.Engine.Errors;
+using System.CodeDom.Compiler;
+using quicksharp.Engine.Loggers;
+using System.Reflection;
+using quicksharp.Engine.Interfaces;
+using quicsharp.Engine;
 
 namespace quicsharp.App
 {
 	public partial class MainForm : Form
 	{
-		private VariableStringRenderer _renderer;
+		private ScriptExecutor _executor;
 
 		public MainForm()
 		{
@@ -22,35 +28,17 @@ namespace quicsharp.App
 
 			txtCode.Styler = new CustomCSharpStyler();
 			txtOut.Styler = new BatchStyler();
-			_renderer = new VariableStringRenderer();
+
+			_executor = new ScriptExecutor(new TextBoxScriptLogger(txtOut));
 		}
 
-		protected async override void OnKeyDown(KeyEventArgs e)
+		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			base.OnKeyDown(e);
 
 			if (e.KeyCode == Keys.F5)
-				await RunScriptAndShowOutputAsync();
-
+				_executor.Execute(txtCode.Text, this);
 		}
-
-		private async Task RunScriptAndShowOutputAsync()
-		{
-			var result = await RunScriptAsync();
-			ShowScriptOutput(result);
-		}
-
-		private Task<object> RunScriptAsync()
-		{
-			return new ScriptRunner(new CodePreparer()).Run(txtCode.Text);
-		}
-
-		private void ShowScriptOutput(object scriptResult)
-		{
-			if (scriptResult is Exception ex)
-				txtOut.Text = ex.ToString();
-			else
-				txtOut.Text = _renderer.Render(scriptResult as IEnumerable<Variable>);
-		}
+		
 	}
 }

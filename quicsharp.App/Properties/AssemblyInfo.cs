@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("quicsharp.App")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Andreas Wäscher")]
 [assembly: AssemblyProduct("quicsharp.App")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Andreas Wäscher")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

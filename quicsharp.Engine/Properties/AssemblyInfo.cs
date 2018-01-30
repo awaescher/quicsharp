@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("quicsharp.Engine")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A simple C# scripting engine without dependencies.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Andreas Wäscher")]
 [assembly: AssemblyProduct("quicsharp.Engine")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Andreas Wäscher")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,6 +21,8 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("837869e0-7a68-4357-94c8-8ae4068f2616")]
+
+[assembly: InternalsVisibleTo("quicsharp.Tests")]
 
 // Version information for an assembly consists of the following four values:
 //
