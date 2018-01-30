@@ -33,6 +33,51 @@ namespace quicsharp.Tests
 			{
 				"Code;;".EnsureSemicolon().Should().Be("Code;;");
 			}
+
+			public class RemoveSemicolonMethod
+			{
+				[Test]
+				public void Does_Not_Change_Code_Without_Semicolon()
+				{
+					"Code".RemoveSemicolon().Should().Be("Code");
+				}
+
+				[Test]
+				public void Removes_Semicolon_At_The_End_Of_The_Line()
+				{
+					"Code;".RemoveSemicolon().Should().Be("Code");
+				}
+
+				[Test]
+				public void Removes_Whitespace_At_The_End_Of_The_Line()
+				{
+					"Code ".RemoveSemicolon().Should().Be("Code");
+				}
+
+				[Test]
+				public void Removes_Semicolon_And_Whitespace_At_The_End_Of_The_Line()
+				{
+					"Code; ".RemoveSemicolon().Should().Be("Code");
+				}
+
+				[Test]
+				public void Does_Not_Remove_Whitespace_At_The_Beginning_Of_The_Line()
+				{
+					" Co de".RemoveSemicolon().Should().Be(" Co de");
+				}
+
+				[Test]
+				public void Removes_Multiple_Semicolons()
+				{
+					"Code;;".RemoveSemicolon().Should().Be("Code");
+				}
+
+				[Test]
+				public void Does_Only_Remove_Semicolons_At_The_End_Of_The_Line()
+				{
+					";Co;de;".RemoveSemicolon().Should().Be(";Co;de");
+				}
+			}
 		}
 	}
 }
