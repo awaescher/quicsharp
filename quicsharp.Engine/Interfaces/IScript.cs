@@ -6,6 +6,6 @@ namespace quicksharp.Engine.Interfaces
 {
 	public interface IScript
 	{
-		void Execute(IScriptLogger logger);
+		void Execute(IScriptLogger logger, object target);
 	}
 }

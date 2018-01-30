@@ -37,7 +37,7 @@ namespace quicsharp.App
 			base.OnKeyDown(e);
 
 			if (e.KeyCode == Keys.F5)
-				_executor.Execute(txtCode.Text);
+				_executor.Execute(txtCode.Text, this);
 		}
 		
 	}

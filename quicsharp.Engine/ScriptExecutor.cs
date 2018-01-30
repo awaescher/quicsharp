@@ -19,7 +19,7 @@ namespace quicsharp.Engine
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
-		public void Execute(string code)
+		public void Execute(string code, object target)
 		{
 			Logger.InitLog();
 
@@ -31,14 +31,14 @@ namespace quicsharp.Engine
 			if (compilerResult.Errors.HasErrors)
 				ShowErrors(compilerResult, sourceInfo);
 			else
-				TryExecuteScript(compilerResult);
+				TryExecuteScript(compilerResult, target);
 		}
 
-		private void TryExecuteScript(CompilerResults compilerResult)
+		private void TryExecuteScript(CompilerResults compilerResult, object target)
 		{
 			try
 			{
-				ExecuteCode(compilerResult.CompiledAssembly);
+				ExecuteCode(compilerResult.CompiledAssembly, target);
 			}
 			catch (Exception ex)
 			{
@@ -60,7 +60,7 @@ namespace quicsharp.Engine
 			Logger.ShowErrors(compilerErrors);
 		}
 
-		private void ExecuteCode(Assembly assembly)
+		private void ExecuteCode(Assembly assembly, object target)
 		{
 			var scriptType = assembly.GetType("quicksharp.Engine.DynamicScript");
 
@@ -68,7 +68,7 @@ namespace quicsharp.Engine
 				throw new ArgumentNullException(nameof(scriptType), "Could not find generated script type: quicksharp.Engine.DynamicScript");
 
 			var script = Activator.CreateInstance(scriptType) as IScript;
-			script.Execute(Logger);
+			script.Execute(Logger, target);
 		}
 	}
 }

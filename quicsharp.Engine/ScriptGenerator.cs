@@ -39,7 +39,7 @@ namespace quicksharp.Engine
     public class DynamicScript : IScript
     {
 
-	public void Execute(IScriptLogger logger)
+	public void Execute(IScriptLogger logger, object target)
         {
             try
             {

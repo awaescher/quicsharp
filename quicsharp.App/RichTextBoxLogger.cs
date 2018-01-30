@@ -33,8 +33,6 @@ namespace quicksharp.Engine.Loggers
 				var enumerable = value as IEnumerable;
 				if (enumerable != null)
 				{
-					// #lambda value = string.Join(Environment.NewLine, enumerable);
-
 					var sb = new StringBuilder();
 
 					foreach (var item in enumerable)
