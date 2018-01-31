@@ -102,44 +102,6 @@ namespace quicksharp.Engine
 					sb.AppendLine(indent + $"logger.TryLog(\"{displayNameWithQuotationMarks}\", {loggerInfo.Value});");
 				}
 
-				/*
-
-				string expressionString = line.TrimStart();
-
-				bool isEmpty = string.IsNullOrEmpty(line.Trim());
-				bool isComment = expressionString.StartsWith("//");
-
-				bool shouldSkip = isEmpty || isComment;
-
-				if (shouldSkip)
-				{
-					sb.AppendLine("");
-					continue;
-				}
-
-				string valueString = expressionString;
-
-				var sendLineToLogger = true;
-
-				if (expressionString.Length > 1 && expressionString.StartsWith("#"))
-				{
-					// insert namespace "#System.Windows.Forms"
-					string usingString = expressionString.Substring(1).Trim();
-					if (!usingString.StartsWith("using", StringComparison.OrdinalIgnoreCase))
-						usingString = "using " + usingString;
-
-					if (!info.Usings.Contains(usingString))
-						info.Usings.Add(usingString);
-				}
-				else if (expressionString.Length > 1 && expressionString.StartsWith("$"))
-				{
-					// insert namespace "$System.Windows.Forms.dll"
-					string reference = expressionString.Substring(1).Trim();
-					if (!info.References.Contains(reference))
-						info.References.Add(reference);
-				}
-					*/
-
 			}
 
 			sourceInfo.SourceCode = sb.ToString();
