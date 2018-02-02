@@ -9,7 +9,11 @@
         <projectUrl>https://github.com/awaescher/quicsharp</projectUrl>
         <iconUrl>https://raw.githubusercontent.com/awaescher/quicsharp/master/app128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A simple C# scripting engine without dependencies (beyond .NET 3.5).</description>
+        <description>A simple C# scripting engine without dependencies (beyond .NET 3.5).
+
+Usage:
+    var executor = new ScriptExecutor(... any ScriptLogger ...);
+    executor.Execute(... source code ...);</description>
         <tags>quic# C# Scripting</tags>
     </metadata>
     <files>
