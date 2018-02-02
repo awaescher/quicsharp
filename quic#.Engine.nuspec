@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>quicsharp.Engine</id>
-        <version>1.0.2</version>
-        <title>quic# - C# Scripting Engine</title>
+        <id>quicsharp.Engine.CodeDom</id>
+        <version>1.1.0</version>
+        <title>quic# Scripting Engine with CodeDom</title>
         <authors>Andreas Wäscher</authors>
         <owners>Andreas Wäscher</owners>
         <projectUrl>https://github.com/awaescher/quicsharp</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/awaescher/quicsharp/master/app.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A simple C# scripting engine without dependencies (beyond .NET 3.5).</description>
         <tags>quic# C# Scripting</tags>
