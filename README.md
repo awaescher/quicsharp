@@ -1,3 +1,4 @@
+
 # quic#
 A very simple scripting app using an abstracted C# scripting engine powered by either ...
  - the [Roslyn Scripting API](https://github.com/dotnet/roslyn/wiki/Scripting-API-Samples)
@@ -14,3 +15,9 @@ A very simple scripting app using an abstracted C# scripting engine powered by e
    - branch: `master`/`CodeDom-Powered-Engine-NET35`
 
 ![Screenshot](_img/Screenshot.png)
+
+Credits:
+Thanks to [bokehlicia](https://bokehlicia.deviantart.com/) for the [great app icon](http://www.iconarchive.com/show/captiva-icons-by-bokehlicia/brackets-icon.html)
+
+![App icon](app64.png)
+
