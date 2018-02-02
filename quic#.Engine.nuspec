@@ -7,7 +7,7 @@
         <authors>Andreas Wäscher</authors>
         <owners>Andreas Wäscher</owners>
         <projectUrl>https://github.com/awaescher/quicsharp</projectUrl>
-        <iconUrl>https://raw.githubusercontent.com/awaescher/quicsharp/master/app.png</iconUrl>
+        <iconUrl>https://raw.githubusercontent.com/awaescher/quicsharp/master/app128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A simple C# scripting engine without dependencies (beyond .NET 3.5).</description>
         <tags>quic# C# Scripting</tags>
